@@ -1,0 +1,28 @@
+Senior Design (Jetson Nano Quickstart Headless):
+
+-to connect to Jetson Nano (USB serial):
+	-connect USB connector to laptop
+	-Use Putty to launch remote connection
+	-select Serial for connection type
+	-select appropriate COM(#), can be found on Windows device manager
+	-select baud rate: 115200
+
+-to view a list of avaliable networks (can be done while connected via USB serial):
+	nmcli d wifi list
+
+-to connect Jetson Nano to Wifi (can be done while connected via USB serial):
+	sudo nmcli d wifi connect "TYPE_SSID_HERE" password TYPE_PASSWORD_HERE
+
+-to learn Jetson Nano ip address (can be done while connected via USB serial):
+	ifconfig
+
+-to SSH into Jetson Nano:
+	-launch git-bash terminal
+	SSH pathvision@ENTER_IP_ADDRESS_HERE
+	-password: design
+
+-to launch VNC:
+	-use "VNC viewer" app to launch VNC
+	-type IP address of Jetson Nano
+	-password: design
+
