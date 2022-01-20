@@ -22,7 +22,7 @@ Senior Design (Jetson Nano Quickstart Headless):
 	-password: design
 
 -to launch VNC:
-	-use "VNC viewer" app to launch VNC
+	-use "VNC viewer" or "TightVNC" (recommended) app to launch VNC
 	-type IP address of Jetson Nano
 	-password: design
 
