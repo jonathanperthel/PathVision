@@ -1,0 +1,8 @@
+Camera Testing resouces:
+
+gst-launch-1.0 nvarguscamerasrc ! nvoverlaysink
+https://forums.developer.nvidia.com/t/gstreamer-critical-gst-mini-object-set-qdata-assertion-object-null-failed/181389/4
+
+https://forums.developer.nvidia.com/t/opencv-video-capture-with-gstreamer-doesnt-work-on-ros-melodic/113147/3
+
+https://developer.ridgerun.com/wiki/index.php?title=Jetson_Nano/Gstreamer/Example_Pipelines/Capture_Display
