@@ -19,8 +19,8 @@ stereoMapR_y = cv_file.getNode('stereoMapR_y').mat()
 
 
 # Open both cameras
-cap_right = cv2.VideoCapture(2, cv2.CAP_DSHOW)                    
-cap_left =  cv2.VideoCapture(1, cv2.CAP_DSHOW)
+cap_right = cv2.VideoCapture(0, cv2.CAP_DSHOW)                    
+cap_left =  cv2.VideoCapture(2, cv2.CAP_DSHOW)
 
 #stereo param
 stereo = cv2.StereoBM_create(32,29)
@@ -41,9 +41,9 @@ while(cap_right.isOpened() and cap_left.isOpened()):
     disparity = disparity.astype(np.float32)
     disparity = (disparity/16.0 - 17)/17
 
-    map = disparity
-    #disparity = cv2.normalize(disparity, disparity, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)#C3)
-    #map = cv2.applyColorMap(disparity, cv2.COLORMAP_AUTUMN)
+    #map = disparity
+    disparity = cv2.normalize(disparity, disparity, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)#C3)
+    map = cv2.applyColorMap(disparity, cv2.COLORMAP_AUTUMN)
     #map = cv2.Canny(map, 30, 255)
     #map = cv2.erode(map, (2,2), iterations=1)
                      
