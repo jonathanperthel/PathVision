@@ -1,0 +1,16 @@
+Char 1
+Move Straight - 'm '
+Stop/only turn - 's'
+
+Rest of Char
+Just turn Left - 'l (angle)'
+Only turn Right - 'r (angle)'
+
+
+Example 90 degrees to the right while moving: "m r 90"
+Example turn to left 45 degrees "s l 45"
+----------------------
+
+Go over with Jon prob wont
+shuffle left 'q'
+shuffle right 'e'
