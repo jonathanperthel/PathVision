@@ -1,0 +1,15 @@
+Char #1
+Move Straight - 'm '
+Stop/only turn - 's '
+
+Rest of Characters is angle
+negative angle is to the left 
+positive angle to the right
+
+Example 90 degrees to the right while moving: "m 90"
+Example turn to left 45 degrees "s -45"
+----------------------
+
+Go over with Jon prob wont use
+shuffle left 'q'
+shuffle right 'e'
