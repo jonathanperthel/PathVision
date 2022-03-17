@@ -1,4 +1,4 @@
-from turtle import position
+#from turtle import position
 import cv2
 import numpy as np
 
@@ -18,6 +18,10 @@ while True:
 
     #reads in the frame
     _, frame = cap.read()
+
+    #read for intel?
+    ret, frame, depth_frame = rs.get_frame_stream()
+
 
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
