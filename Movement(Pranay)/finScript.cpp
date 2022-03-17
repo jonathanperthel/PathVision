@@ -13,6 +13,15 @@ Use of this source code is governed by the MPL-2.0 license, see LICENSE.
 #include <arpa/inet.h>
 #include <string.h>
 #include <string>
+#include <stdio.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+
+#define PORT 61626
+#define MAX 90
+#define SA struct sockaddr
+#define int connfd
 
 using namespace UNITREE_LEGGED_SDK;
 
@@ -45,6 +54,16 @@ void Custom::UDPSend()
 	udp.Send();
 }
 
+string chat(){
+	string buff;
+
+	bzero(buff, MAX);
+
+	read(connfd, buff, sizeof(buff));
+
+	return buff;
+}
+
 void Custom::RobotControl() 
 {
 	cmd.forwardSpeed = 0.0f;
@@ -58,11 +77,8 @@ void Custom::RobotControl()
 	cmd.yaw = 0;
 		
 	while (1) {
-		string command = '';
-		/*
-			GET ETHERNET COMMANDS HERE
-		*/
-		
+		string command = chat();
+
 		if(command[0] == 'm') {
 			cmd.mode = 2;
 		} else if (command[0] == 's') {
@@ -81,8 +97,37 @@ void Custom::RobotControl()
 	}
 }
 
+
 int main(void) 
 {
+	//Socket setup
+	int sockfd, len;
+	struct sockaddr_in, servaddr, client;
+
+	if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1){
+		printf("socket failed");
+		exit(EXIT_FAILURE);
+	}
+
+	bzero(&servaddr, sizeof(servaddr));
+
+	servaddr.sin_famil = AF_INET;
+	servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+	servaddr.sin_port = htons(PORT);
+
+	if(bind(sockfd, (SA*)&servaddr, sizeof(servaddr)) != 0){
+		printf("bind failed");
+		exit(EXIT_FAILURE);
+	}
+
+	if(listen(sockfd, 10) != 0){
+		printf("listen failed");
+		exit(EXIT_FAILURE);
+	}
+	len = sizeof(client);
+	connfd = accept(sockfd, (SA*)&client, &len);
+
+
 	//Unitree
 	std::cout << "Communication level is set to HIGH-level." << std::endl
 	      << "WARNING: Make sure the robot is standing on the ground." << std::endl
@@ -102,6 +147,8 @@ int main(void)
 	while(1){
 		sleep(10);
 	};
+
+	close(sockfd);
 
 	return 0; 
 }
