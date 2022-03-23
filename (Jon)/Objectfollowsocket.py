@@ -1,6 +1,6 @@
+
 import socket
 import time
-from turtle import position
 import cv2
 import numpy as np
 
@@ -18,7 +18,7 @@ data = s.recv(1024)
 print(data)
 
 cap = cv2.VideoCapture(0) #Capture first frame
-position = 90 #degrees
+position = 0 #degrees
 
 #sets line value if no red object detected
 _, frame = cap.read()
@@ -56,13 +56,13 @@ while True:
     cv2.line(frame, (x_medium, 0), (x_medium, 480), (0,255,0), 2)
 
     #shows frame
-    cv2.imshow("Frame", frame)
-    cv2.imshow("mask", red_mask)
+    #cv2.imshow("Frame", frame)
+    #cv2.imshow("mask", red_mask)
 
-    key = cv2.waitKey(1)
+    #key = cv2.waitKey(1)
 
-    if key == 27:
-        break
+    #if key == 27:
+     #   break
 
     #move robot
     if x_medium < center - 30:
@@ -72,8 +72,12 @@ while True:
     
     #print(position)
 
+    s.sendall(bytes(position))
+    data = s.recv(1024)
+    print(data)
 
-    for i in position:
+
+'''    for i in position:
         #send string, notice string needs to be in bytes form, this is the simplest way to do this
         #can probably find a better way to convert, especially if we want to use a preset variable
         s.sendall(b"1")
@@ -85,6 +89,7 @@ while True:
         # arbitrary wait time for ease of testing can delete later if needed
         time.sleep(2)
     break
+'''
 
 #close connection
 s.close()
