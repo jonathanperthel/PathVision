@@ -75,6 +75,7 @@ while True:
     s.sendall(bytes(position))
     data = s.recv(1024)
     print(data)
+    time.sleep(2)
 
 
 '''    for i in position:

@@ -74,6 +74,8 @@ while(True):
     #Display the resulting frame
     cv2.imshow('frame',frame)
 
+    print(angle)
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
