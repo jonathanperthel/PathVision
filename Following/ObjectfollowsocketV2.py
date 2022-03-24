@@ -66,6 +66,8 @@ while True:
 
     #move robot
     position = int(x_medium/8)
+    if position < 10:
+        position = 10
     
     #print(position)
 
