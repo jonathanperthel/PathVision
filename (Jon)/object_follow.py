@@ -46,7 +46,7 @@ while True:
 
     #shows frame
     cv2.imshow("Frame", frame)
-    cv2.imshow("mask", red_mask)
+    #cv2.imshow("mask", red_mask)
 
     key = cv2.waitKey(1)
 
@@ -54,6 +54,8 @@ while True:
         break
 
     #move robot
+
+    #GIVE FIXED ANGLE
     if x_medium < center - 30:
         position += 1
     elif x_medium > center + 30:
