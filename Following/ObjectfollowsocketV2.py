@@ -67,13 +67,13 @@ while True:
     #move robot
     position = int(x_medium/8)
     
-    print(position)
+    #print(position)
 
-''' s.sendall(bytes(position))
+    s.sendall(bytes(position))
     data = s.recv(1024)
     print(data)
     time.sleep(2)
-'''
+
 
 '''    for i in position:
         #send string, notice string needs to be in bytes form, this is the simplest way to do this
