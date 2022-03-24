@@ -3,6 +3,14 @@ import numpy as np
 
 class DepthCamera:
     def __init__(self):
+        # reset camer before starting pipeline
+        print("reset start")
+        ctx = rs.context()
+        devices = ctx.query_devices()
+        for dev in devices:
+            dev.hardware_reset()
+        print("reset done")
+
         # Configure depth and color streams
         self.pipeline = rs.pipeline()
         config = rs.config()
