@@ -3,6 +3,7 @@ import numpy as np
 
 class DepthCamera:
     def __init__(self):
+
         # Configure depth and color streams
         self.pipeline = rs.pipeline()
         config = rs.config()
