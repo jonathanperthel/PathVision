@@ -12,10 +12,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((host, port))
 
 # send handshake to the server
-s.sendall(b'socket connected!')
-data = s.recv(1024)
+#s.sendall(b'socket connected!')
+#data = s.recv(1024)
 #print out data recieved
-print(data)
+#print(data)
 
 cap = cv2.VideoCapture(0) #Capture first frame
 position = 49 #degrees
@@ -65,31 +65,21 @@ while True:
      #   break
 
     #move robot
-    position = int(x_medium/8)
+    position = int(x_medium/13)
     if position < 10:
         position = 10
+    elif position > 96:
+        position = 96
     
-    #print(position)
+    print(position)
+    command = str(position)
 
-    s.sendall(bytes(position))
-    data = s.recv(1024)
-    print(data)
+    s.sendall(command.encode())
+    #data = s.recv(1024)
+    #print(data)
     time.sleep(2)
 
 
-'''    for i in position:
-        #send string, notice string needs to be in bytes form, this is the simplest way to do this
-        #can probably find a better way to convert, especially if we want to use a preset variable
-        s.sendall(b"1")
-
-        #collect and print data recieved
-        data = s.recv(1024)
-        print(data)
-
-        # arbitrary wait time for ease of testing can delete later if needed
-        time.sleep(2)
-    break
-'''
 
 #close connection
 s.close()
