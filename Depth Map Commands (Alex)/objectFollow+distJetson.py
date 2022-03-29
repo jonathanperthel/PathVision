@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+# In[ ]:
 
 
 #import socket
@@ -75,25 +75,28 @@ while True:
     
     clear_output(wait=True)
     print(dist1)
-    print(position)
     
     #shows frame
-    cv2.imshow('red_mask', red_mask)
+    #cv2.imshow('red_mask', red_mask)
     cv2.imshow('depth_frame', depth_frameDISP)
     cv2.imshow('color_frame', color_frame)
     key = cv2.waitKey(1)
     if key == 27:
         break
 
+    print(x_medium)
+    
     #movement commands
-    postion = int(x_medium/14)
-    if postion < 10:
+    position = int(x_medium/8)
+    print(position)
+    if position < 10:
         position = 10
     elif postion > 84:
-        postion = 84
+        position = 84
     if dist1 < 300:
         position = 99
-        
+    
+    #print(position)
     command = str(position)
     s.sendall(command.encode())
 
