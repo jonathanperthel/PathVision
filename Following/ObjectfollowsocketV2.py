@@ -77,7 +77,7 @@ while True:
     s.sendall(command.encode())
     #data = s.recv(1024)
     #print(data)
-    time.sleep(2)
+    #time.sleep(2)
 
 
 
