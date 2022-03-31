@@ -44,7 +44,14 @@ while True:
 
         thresh = 500
         minThresh = 200
-        if dist1 > thresh and dist2 > thresh and dist3 > thresh:
+
+        #minimum threshold reached
+        if dist1 < minThresh and dist2 < minThresh and dist3 < minThresh:
+            print('obstacle close - stop')
+            cmd = 99
+
+        #no obstacle detected, go forward
+        elif dist1 > thresh and dist2 > thresh and dist3 > thresh:
             print('no obstacle - move forward')
             cmd = 42
             
@@ -66,11 +73,6 @@ while True:
         elif dist3 < dist2 or dist3 < dist1:
             print('obstacle right - move left')
             cmd = 20
-
-        #minimum threshold reached
-        elif dist1 < minThresh and dist2 < minThresh and dist3 < minThresh:
-            print('obstacle close - stop')
-            cmd = 99
 
     else:
         continue
