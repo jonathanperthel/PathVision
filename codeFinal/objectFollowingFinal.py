@@ -19,6 +19,10 @@ ret, depth_frame, color_frame, depth_frame2 = dc.get_frame()
 rows, cols, _ = color_frame.shape
 x_medium = int(cols/2)
 
+# Define the codec and create VideoWriter object
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('dotcam.avi', fourcc, 20.0, (640, 480))
+
 #mainloop
 while True:
     
@@ -52,12 +56,15 @@ while True:
     print(dist1)
     
     #shows frame
-    cv2.imshow('depth_frame', depth_frame2)
+    #cv2.imshow('depth_frame', depth_frame2)
     cv2.imshow('color_frame', color_frame)
     key = cv2.waitKey(1)
     if key == 27:
         break
     
+    #video output
+    out.write(color_frame) 
+
     #movement commands
     position = int(x_medium/8)
     print(position)
