@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import cv2
 import socket
 import pyrealsense2 as rs
@@ -47,7 +41,10 @@ while True:
     
     #movement commands:
     if dist1 != 0 and dist2 != 0 and dist3 != 0:
-        if dist1 > 500 and dist2 > 500 and dist3 > 500:
+
+        thresh = 500
+        minThresh = 200
+        if dist1 > thresh and dist2 > thresh and dist3 > thresh:
             print('no obstacle - move forward')
             cmd = 42
             
@@ -55,19 +52,26 @@ while True:
         elif dist2 < dist1 and dist2 < dist3:
             if dist1 < dist3:
                 print('obstacle center - move right')
-                cmd = 20
+                cmd = 70
             if dist3 < dist1:
                 print('obstacle center - move left')
-                cmd = 70
+                cmd = 20
                 
         #object on left, go right
         elif dist1 < dist2 or dist1 < dist3:
             print('obstacle left - move right')
-            cmd = 20
+            cmd = 70
             
         #object on right go left
         elif dist3 < dist2 or dist3 < dist1:
             print('obstacle right - move left')
+            cmd = 20
+
+        #minimum threshold reached
+        elif dist1 < minThresh and dist2 < minThresh and dist3 < minThresh:
+            print('obstacle close - stop')
+            cmd = 99
+
     else:
         continue
     
@@ -90,10 +94,3 @@ while True:
     
 s.close
 cv2.destroyAllWindows
-
-
-# In[ ]:
-
-
-
-
