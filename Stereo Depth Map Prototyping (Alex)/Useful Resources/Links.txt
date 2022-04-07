@@ -1,2 +1,0 @@
-Possible issues with depth map
-https://stackoverflow.com/questions/36172913/opencv-depth-map-from-uncalibrated-stereo-system
